@@ -1,6 +1,5 @@
 package travel;
 import java.util.Optional;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,8 +22,6 @@ public class newsoft extends Application {
 			Scene index;
 			Button Train;
 			String yid;
-			
-			
 			@Override
 			public void start(Stage primaryStage) throws Exception {
 			window=primaryStage;
