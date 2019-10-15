@@ -145,7 +145,7 @@ public class generateexcel {
 		    FileOutputStream out=new FileOutputStream(new File("d:/jouney/dpy2017/trainAndAccoPlan.xlsx"));
 			wb.write(out);
 			out.close();
-			wb.close();
+			
 			
 		}catch(Exception e){
 			System.out.println(e);
@@ -377,7 +377,7 @@ public void generatebalancesheet(MysqlCon obj){
 	FileOutputStream out=new FileOutputStream(new File("d:/jouney/dpy2017/balancesheet.xlsx"));
 	wb.write(out);
 	out.close();
-	wb.close();
+	
 	
 	}
 	catch(Exception e){
@@ -503,7 +503,7 @@ public void generatepilgrimsheet(MysqlCon obj){
 		FileOutputStream out=new FileOutputStream(new File("d:/jouney/dpy2017/pilgrimdetail.xlsx"));
 		wb.write(out);
 		out.close();
-		wb.close();
+		
 		
 		}
 		catch(Exception e){

@@ -6,6 +6,8 @@ import java.util.Objects;
 import javafx.application.*;
 import javafx.collections.*;
 import javafx.collections.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.*;
 import javafx.geometry.*;
 import javafx.scene.*;
@@ -57,62 +59,62 @@ public class balancesheet {
 	      window.setTitle("Balance Sheet");
 	      
 	      snofield=new TableColumn<>("sno"); snofield.setMinWidth(50); 
-	       snofield.setCellValueFactory(new PropertyValueFactory<>("sno"));
+	       snofield.setCellValueFactory(new PropertyValueFactory("sno"));
 	      
 	       uidfield=new TableColumn<>("ID"); uidfield.setMinWidth(50); 
-	       uidfield.setCellValueFactory(new PropertyValueFactory<>("uid"));
+	       uidfield.setCellValueFactory(new PropertyValueFactory("uid"));
 	       
 	       namefield=new TableColumn<>("Name"); namefield.setMinWidth(150);
-	       namefield.setCellValueFactory(new PropertyValueFactory<>("name"));
+	       namefield.setCellValueFactory(new PropertyValueFactory("name"));
 	       
 	        personfield=new TableColumn<>("Person"); personfield.setMinWidth(50);
-	        personfield.setCellValueFactory(new PropertyValueFactory<>("person"));
+	        personfield.setCellValueFactory(new PropertyValueFactory("person"));
 	     
 	        adultnonfield=new TableColumn<>("AdultNon"); adultnonfield.setMinWidth(50);
-	        adultnonfield.setCellValueFactory(new PropertyValueFactory<>("adultnon"));
+	        adultnonfield.setCellValueFactory(new PropertyValueFactory("adultnon"));
 	        
 	        scmnonfield=new TableColumn<>("scmnon"); scmnonfield.setMinWidth(50);
-	        scmnonfield.setCellValueFactory(new PropertyValueFactory<>("scmnon"));
+	        scmnonfield.setCellValueFactory(new PropertyValueFactory("scmnon"));
 	      
 	        
 	        scfnonfield=new TableColumn<>("scfnon"); scfnonfield.setMinWidth(50);
-	        scfnonfield.setCellValueFactory(new PropertyValueFactory<>("scfnon"));
+	        scfnonfield.setCellValueFactory(new PropertyValueFactory("scfnon"));
 	        
 	        childnonfield=new TableColumn<>("childnon"); childnonfield.setMinWidth(50);
-	        childnonfield.setCellValueFactory(new PropertyValueFactory<>("childnon"));
+	        childnonfield.setCellValueFactory(new PropertyValueFactory("childnon"));
 	        
 	        adultacfield=new TableColumn<>("AdultAC"); adultacfield.setMinWidth(50);
-	        adultacfield.setCellValueFactory(new PropertyValueFactory<>("adultac"));
+	        adultacfield.setCellValueFactory(new PropertyValueFactory("adultac"));
 	        
 	        scmacfield=new TableColumn<>("scmac"); scmacfield.setMinWidth(50);
-	        scmacfield.setCellValueFactory(new PropertyValueFactory<>("scmac"));
+	        scmacfield.setCellValueFactory(new PropertyValueFactory("scmac"));
 	        
 	        scfacfield=new TableColumn<>("scfac"); scfacfield.setMinWidth(50);
-	        scfacfield.setCellValueFactory(new PropertyValueFactory<>("scfac"));
+	        scfacfield.setCellValueFactory(new PropertyValueFactory("scfac"));
 	        
 	        childacfield=new TableColumn<>("childac"); childacfield.setMinWidth(50);
-	        childacfield.setCellValueFactory(new PropertyValueFactory<>("childac"));
+	        childacfield.setCellValueFactory(new PropertyValueFactory("childac"));
 	
 	        paidfield=new TableColumn<>("paid"); paidfield.setMinWidth(50);
-	        paidfield.setCellValueFactory(new PropertyValueFactory<>("paid"));
+	        paidfield.setCellValueFactory(new PropertyValueFactory("paid"));
 	        
 	        balancefield=new TableColumn<>("balance"); balancefield.setMinWidth(50);
-	        balancefield.setCellValueFactory(new PropertyValueFactory<>("balance"));
+	        balancefield.setCellValueFactory(new PropertyValueFactory("balance"));
 	        
 	        totalfield=new TableColumn<>("total"); totalfield.setMinWidth(50);
-	        totalfield.setCellValueFactory(new PropertyValueFactory<>("total"));
+	        totalfield.setCellValueFactory(new PropertyValueFactory("total"));
 	        
 	        //TableColumn<balancecontents,Label> pluslabel;
 		     // TableColumn<balancecontents,TextField> addpaid;
 	        
 	        pluslabelfield=new TableColumn<>(""); pluslabelfield.setMinWidth(50);
-	        pluslabelfield.setCellValueFactory(new PropertyValueFactory<>("pluslabel"));
+	        pluslabelfield.setCellValueFactory(new PropertyValueFactory("pluslabel"));
 	        
 	        addpaidfield=new TableColumn<>("Update"); addpaidfield.setMaxWidth(100);
-	        addpaidfield.setCellValueFactory(new PropertyValueFactory<>("addpaid"));
+	        addpaidfield.setCellValueFactory(new PropertyValueFactory("addpaid"));
 	        
 	      ObservableList<balancecontents> content = FXCollections.observableArrayList();
-	      MysqlCon myobj=new MysqlCon();
+	      final MysqlCon myobj=new MysqlCon();
 	      int pc=0;
 	 
 	  	try{
@@ -156,7 +158,13 @@ public class balancesheet {
 	      Button submit=new Button("Update!");
 	      submit.setMaxHeight(50);
 	      submit.setMaxWidth(100);
-	      submit.setOnAction(e->=updateit(myobj,row));
+              submit.setOnAction(new EventHandler<ActionEvent>() {
+    @Override public void handle(ActionEvent event) {
+        updateit(myobj,row);
+        
+    }
+});
+	      
 	  
 	      VBox layout = new VBox(20);
 	      layout.setPadding(new Insets(40, 20, 20, 20));

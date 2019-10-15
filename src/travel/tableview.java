@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -52,7 +54,7 @@ public class tableview {
       yid=x;
       window.setTitle("Edit Page");
       button = new Button("Submit");
-      MysqlCon obj=new MysqlCon();
+      final MysqlCon obj=new MysqlCon();
       obj.idshowname(yid);
       comboBox = new ComboBox<>();
       for(int i=0;i<obj.id.length;i++){
@@ -61,7 +63,13 @@ public class tableview {
       }
                     
       comboBox.setPromptText("Select Passenger ID");
-      button.setOnAction(e -> showscene2(obj));
+      
+       button.setOnAction(new EventHandler<ActionEvent>() {
+    @Override public void handle(ActionEvent event) {
+       showscene2(obj);
+        
+    }
+});
       Label label=new Label("Enter no. of passengers to add [0 to EDIT]");
       num=new TextField("0");
      
@@ -78,7 +86,7 @@ public class tableview {
       
   }
 
-  private void showscene2(MysqlCon obj){
+  private void showscene2(final MysqlCon obj){
 	  
 	  String s=comboBox.getValue();
 	  String idNname[]=new String[2];
@@ -141,7 +149,12 @@ public class tableview {
     table.getColumns().addAll(namefield,phonefield,agefield,acfield,genderfield);
 
     Button submit=new Button("Submit");
-    submit.setOnAction(e->submitit(obj));
+   
+     submit.setOnAction(new EventHandler<ActionEvent>() {
+    @Override public void handle(ActionEvent event) {
+       submitit(obj);
+    }
+});
     submit.setPadding(new Insets(10, 20, 10, 20));
     
     final Text showid=new Text();

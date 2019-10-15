@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import javafx.collections.*;
 import javafx.collections.*;
 import javafx.event.EventType;
+import javafx.event.*;
 import javafx.geometry.*;
 import javafx.geometry.*;
 import javafx.scene.*;
@@ -55,7 +56,7 @@ public class TrainAccoEntry {
 	      showscene2(obj);
 	   
    }
-   void showscene2(MysqlCon obj){
+   void showscene2(final MysqlCon obj){
 	   
 		  
 		  namefield=new TableColumn<>("Name");
@@ -158,8 +159,12 @@ public class TrainAccoEntry {
 			    table.getColumns().addAll(namefield,agefield,coach1,seat1,coach2,seat2,coach3,seat3,coach4,seat4,tirupati,rameswaram,kanyakumari);
                 
 			    Button submit=new Button("Submit");
-                            
-			   submit.setOnAction(e->submitit(obj,row));
+                        		submit.setOnAction(new EventHandler<ActionEvent>() {
+    @Override public void handle(ActionEvent event) {
+        submitit(obj,row);
+        
+    }
+}); 
 			    submit.setPadding(new Insets(10, 20, 10, 20));
 			    
 			    final Text showid=new Text();

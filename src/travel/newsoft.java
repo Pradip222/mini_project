@@ -2,6 +2,8 @@ package travel;
 import java.util.Optional;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -40,8 +42,14 @@ public class newsoft extends Application {
 			
 			Button addexpense=new Button("ADD/UPDATE Expense");
 			addexpense.setMinSize(200, 50);
-			addexpense.setOnAction(e->callexpense());
+                        
 			
+			addexpense.setOnAction(new EventHandler<ActionEvent>() {
+    @Override public void handle(ActionEvent event) {
+        callexpense();
+        
+    }
+});
 			   TextInputDialog dialog = new TextInputDialog("dpr2017");
 				dialog.setTitle("Welcome");
 				dialog.setHeaderText("Just a moment!");
@@ -56,12 +64,41 @@ public class newsoft extends Application {
 			
 			
 			
-			add.setOnAction(e->new page2(yid));
-			edit.setOnAction(e->editcall());
-			balance.setOnAction(e->showbalance());
-			delete.setOnAction(e->generatecall());
-			Train.setOnAction(e->callTrainAccoEntry());
 			
+                        add.setOnAction(new EventHandler<ActionEvent>() {
+    @Override public void handle(ActionEvent event) {
+        page2 a=new  page2(yid);
+        
+    }
+});
+			
+                        edit.setOnAction(new EventHandler<ActionEvent>() {
+    @Override public void handle(ActionEvent event) {
+       editcall();
+        
+    }
+});
+			
+                        balance.setOnAction(new EventHandler<ActionEvent>() {
+    @Override public void handle(ActionEvent event) {
+       showbalance();
+        
+    }
+});
+			
+                         delete.setOnAction(new EventHandler<ActionEvent>() {
+    @Override public void handle(ActionEvent event) {
+       generatecall();
+        
+    }
+});
+			
+			   Train.setOnAction(new EventHandler<ActionEvent>() {
+    @Override public void handle(ActionEvent event) {
+       callTrainAccoEntry();
+        
+    }
+});
 			VBox layout=new VBox(20);
 			layout.getChildren().addAll(add,edit,balance,Train,addexpense,delete);
 			index=new Scene(layout,500,450);			

@@ -1,5 +1,7 @@
 package travel;
 import java.sql.ResultSet;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -26,7 +28,13 @@ public class expense {
 		value=new TextField();
 		
 		Button submit=new Button("Submit");
-		submit.setOnAction(e->addexpense());
+                  submit.setOnAction(new EventHandler<ActionEvent>() {
+    @Override public void handle(ActionEvent event) {
+        addexpense();
+        
+    }
+});
+		
 		
 		VBox layout=new VBox(20);
 		layout.getChildren().addAll(label,remark,label2,value,submit);
