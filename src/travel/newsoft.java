@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
+
 public class newsoft extends Application {
   
 		    Button add;
@@ -144,13 +145,11 @@ public class newsoft extends Application {
 	
 
 
-	}
+}
 	
 	
 	
 
 
-/*
- 	
- */
+
 

@@ -119,7 +119,8 @@ public class MysqlCon {
 		    String query="update balancesheet set name='"+newname+"',persons="+person+", adultac="+adultac+", scmac="+scmac+", scfac="+scfac+", childac="+childac+", adultnon="+adultnon+", scmnon="+scmnon+", scfnon="+scfnon+", childnon="+childnon+", paid="+paid+", balance="+balance+", total="+total+" where id='"+id+"'";
 		    stmt.executeUpdate(query);
 			}
-			catch(Exception e){ System.out.println(e);} 
+			catch(Exception e){ System.out.println(e);
+                        } 
 		
 	}
 	
@@ -129,7 +130,7 @@ public class MysqlCon {
 			String tablename="fare";
 			
 		ResultSet rs=stmt.executeQuery("select distinct package from "+tablename+" where yid='"+yid.substring(0,7)+"'");  
-		while(rs.next())  { 
+		while(rs.next()){ 
 		
 		String yatra_p=rs.getString(1);
 		
