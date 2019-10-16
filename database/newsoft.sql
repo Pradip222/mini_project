@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2019 at 01:32 AM
+-- Generation Time: Oct 16, 2019 at 02:48 AM
 -- Server version: 10.3.15-MariaDB
 -- PHP Version: 7.1.30
 
@@ -45,13 +45,6 @@ CREATE TABLE `balancesheet` (
   `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `balancesheet`
---
-
-INSERT INTO `balancesheet` (`id`, `name`, `persons`, `adultnon`, `scmnon`, `scfnon`, `childnon`, `adultac`, `scmac`, `scfac`, `childac`, `paid`, `balance`, `total`) VALUES
-('dpr2019sand', 'sandip Gandal', 0, 0, 0, 0, 0, 0, 0, 0, 0, 900, -900, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -70,7 +63,8 @@ CREATE TABLE `expense` (
 INSERT INTO `expense` (`remark`, `value`) VALUES
 ('Train', 0),
 ('BeMathBus', 12300),
-('G1TPTYFood', 30000);
+('G1TPTYFood', 30000),
+('buyid a4', 243);
 
 -- --------------------------------------------------------
 
@@ -160,10 +154,19 @@ INSERT INTO `pilgrim` (`id`, `name`, `age`, `gender`, `phone`, `ac`, `dob`, `cha
 ('dpr2017Vand', '', 22, 'null', '', 'null', 0, 0),
 ('dpr2017Vand', '', 22, 'null', '', 'null', 0, 0),
 ('dpr2017Vand', '', 22, 'null', '', 'null', 0, 0),
-('dpr2017Vand', '', 22, 'null', '', 'null', 0, 0),
-('dpr2019sand', 'sandip Gandal', 23, 'A', '8888888888', 'P1NONAC', 0, 10750),
-('dpr2019sand', 'pradip', 19, 'A', '8888888888', 'P1NONAC', 0, 10750),
-('dpr2019sand', 'kiran', 23, 'A', '8888888888', 'P1NONAC', 0, 10750);
+('dpr2017Vand', '', 22, 'null', '', 'null', 0, 0);
+
+--
+-- Triggers `pilgrim`
+--
+DELIMITER $$
+CREATE TRIGGER `after_insert` AFTER INSERT ON `pilgrim` FOR EACH ROW begin
+
+insert into train (id,name,gender) values (new.id,new.name,new.gender);
+
+end
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -184,6 +187,13 @@ CREATE TABLE `train` (
   `kanyakumari` varchar(100) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `train`
+--
+
+INSERT INTO `train` (`id`, `name`, `gender`, `train1`, `train2`, `train3`, `train4`, `tirupati`, `rameswaram`, `kanyakumari`) VALUES
+('dpr2017Vand', 'Pradip Pawar', 'A', 'S0405', 'S0656', 'S0607', 'S0551', 'D8D', '0', '0');
+
 -- --------------------------------------------------------
 
 --
@@ -197,6 +207,13 @@ CREATE TABLE `trainamt` (
   `train3` int(11) NOT NULL DEFAULT 0,
   `train4` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `trainamt`
+--
+
+INSERT INTO `trainamt` (`id`, `train1`, `train2`, `train3`, `train4`) VALUES
+('1', 1, 1, 0, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
