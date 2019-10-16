@@ -500,9 +500,10 @@ public void generatepilgrimsheet(MysqlCon obj){
 	    }
 	 
 		
-		FileOutputStream out=new FileOutputStream(new File("d:/jouney/dpy2017/pilgrimdetail.xlsx"));
+		FileOutputStream out=new FileOutputStream(new File("d:/Book1.xlsx"));
 		wb.write(out);
 		out.close();
+                
 		
 		
 		}
