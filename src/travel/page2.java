@@ -64,40 +64,58 @@ public class page2 extends JFrame{
 	
 	public void initilize(){
 		frame=new JFrame();
+                Font font1 = new Font("SansSerif", Font.BOLD, 20);
 		
-		frame.setTitle("page2");
+		frame.setFont(font1);
+                frame.setTitle("page2");
 		frame.setBounds(400,0,730,740);
+               
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setLayout(new MigLayout("","[]40[]","[]13[]"));
 		 
-		//Name		
-		frame.getContentPane().add(new JLabel("Name"),"gapleft 20,gaptop 20");
+		//Name
+                JLabel name1=new JLabel("Name");
+                name1.setFont(font1);
+		frame.getContentPane().add(name1,"gapleft 20,gaptop 20");
 		textfield=new JTextField();
+                textfield.setFont(font1);
 		frame.getContentPane().add(textfield,"wrap");
 		textfield.setColumns(10); 
 		//Name ends
 		
-		//Age				
-		frame.getContentPane().add(new JLabel("Age or DDMMYYYY"),"gapleft 20");		
-		agef=new JTextField();		
+		//Age		
+                JLabel age1=new JLabel("Age or DDMMYYYY");
+                age1.setFont(font1);
+		frame.getContentPane().add(age1,"gapleft 20");
+                frame.setFont(font1);
+		agef=new JTextField();	
+                agef.setFont(font1);
 		frame.getContentPane().add(agef,"wrap");
 		agef.setColumns(5);
 		//Age ends
 			
-		//Phone		
-		frame.getContentPane().add(new JLabel("Phone"),"gapleft 20");		
+		//Phone	
+               JLabel phone1=new JLabel("Phone");
+               phone1.setFont(font1);
+		frame.getContentPane().add(phone1,"gapleft 20");		
 		phonef=new JTextField();
 		frame.getContentPane().add(phonef,"wrap");
 		phonef.setColumns(10);
+                phonef.setFont(font1);
 		//Phone ends
 		
-		//gender		
-		frame.getContentPane().add(new JLabel("Gender"),"gapleft 20");						
+		//gender
+                JLabel gender1= new JLabel("Gender");
+                gender1.setFont(font1);
+		frame.getContentPane().add(gender1,"gapleft 20");						
 		male = new JRadioButton("Male");
+                male.setFont(font1);
 		frame.getContentPane().add(male);		
 		female = new JRadioButton("Female");
+                female.setFont(font1);
 		frame.getContentPane().add(female,"wrap");
 		gender=new ButtonGroup();
+                
 		gender.add(male);
 		gender.add(female);
 		//gender ends
@@ -106,8 +124,9 @@ public class page2 extends JFrame{
 		MysqlCon myobj=new MysqlCon();
 		
 		
-		
-		frame.add(new JLabel("Package Preference"), "gapleft 20");
+		JLabel package1=new JLabel("Package Preference");
+		package1.setFont(font1);
+                frame.add(package1, "gapleft 20");
 		try{
 			String tablename="fare";
 			
@@ -134,27 +153,35 @@ public class page2 extends JFrame{
 		//package ends
 		
 		//paid
-		frame.add(new JLabel("Amount Paid (incl all) Rs"), "gapleft 20");		
+                JLabel paid1=new JLabel("Amount Paid (incl all) Rs");
+                paid1.setFont(font1);
+		frame.add(paid1, "gapleft 20");		
 		paid=new JTextField();
+                paid.setFont(font1);
 		frame.add(paid,"wrap");
 		paid.setColumns(5);
 		//paid ends
 		
-		//+persons				
-		frame.getContentPane().add(new JLabel("Family (Max 9)"),"gapleft 20");		
+		//+persons		
+                JLabel family1=new JLabel("Family (Max 9)");
+                family1.setFont(font1);
+		frame.getContentPane().add(family1,"gapleft 20");		
 		personf=new JTextField();
+                personf.setFont(font1);
 		frame.getContentPane().add(personf);
 		personf.setColumns(5);
 		
-		JButton addb=new JButton("ADD");		
+		JButton addb=new JButton("ADD");
+                addb.setFont(font1);
 		frame.getContentPane().add(addb,"wrap");
 	
 		handlerclass handler= new handlerclass();
 		addb.addActionListener(handler);		
-		//+persons ends
+	 	//+persons ends
 		
 		//submit
 		JButton submit=new JButton("Submit");
+                submit.setFont(font1);
 		frame.add(submit,"dock south,gapleft 20");
 		submitclass submithandle= new submitclass();
 		submit.addActionListener(submithandle);
@@ -164,7 +191,6 @@ public class page2 extends JFrame{
 		// Then, add the jScrollPane to your frame
 		//frame.add(scroll);
 		frame.setVisible(true);
-		
 		   
 		
 	}
@@ -174,6 +200,8 @@ public class page2 extends JFrame{
 			x=Integer.parseInt(personf.getText());
 			
 			newf=new JTextField[x];
+                        Font font1 = new Font("SansSerif", Font.BOLD, 20);
+                       
 			phnf=new JTextField[x];
 			newAgeorDobf=new JTextField[x];
 			newcheckf=new JComboBox[x];
@@ -181,12 +209,20 @@ public class page2 extends JFrame{
 			String ans;
 			ans=Combo.getItemAt(Combo.getSelectedIndex());
 			
-			
-			frame.add(new JLabel("Name"),"gapleft 20");
-			frame.add(new JLabel("Age/DOB"));
-			frame.add(new JLabel("Gender"));
-			frame.add(new JLabel("Package"));
-			frame.add(new JLabel("Phone"),"wrap");
+			JLabel name2=new JLabel("Name");
+                        name2.setFont(font1);
+			frame.add(name2,"gapleft 20");
+			 JLabel age1=new JLabel("Age/DOB");
+                         age1.setFont(font1);
+                        frame.add(age1);
+                         JLabel gender1 =new JLabel("Gender");
+                        gender1.setFont(font1);
+			frame.add(gender1);
+                       JLabel pakekage1= new JLabel("Package");
+			frame.add(pakekage1);
+                        JLabel phone1=new JLabel("Phone");
+                        phone1.setFont(font1);
+			frame.add(phone1,"wrap");
 			
 			for(int i=0;i<x;i++){
 				//name	
